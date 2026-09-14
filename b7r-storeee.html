@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>B7R — Atelier Noir & Laiton | Montres de caractère</title>
+<meta name="description" content="B7R — Atelier Noir & Laiton. Montres pour homme et femme, plus de 10 modèles, livraison partout au Maroc, paiement à la livraison. Commande directe sur WhatsApp.">
+<meta property="og:title" content="B7R — Atelier Noir & Laiton">
+<meta property="og:description" content="Montres de caractère, livraison partout au Maroc, paiement à la livraison. Commande en un message WhatsApp.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;800;900&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0b0912;
+    --bg2:#15101f;
+    --bg3:#1d1629;
+    --gold:#cda35a;
+    --gold-lt:#e8c98a;
+    --cream:#f3ecdd;
+    --violet:#9b5cff;
+    --magenta:#ff3d7f;
+    --cyan:#33e0c7;
+    --amber:#ffb020;
+    --muted:#a89bc2;
+    --radius:18px;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--cream);
+    font-family:'Manrope',sans-serif;
+    overflow-x:hidden;
+    position:relative;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; scroll-behavior:auto !important;}
+  }
+
+  /* ---------- background field ---------- */
+  #bg-field{
+    position:fixed; inset:0; z-index:0; pointer-events:none;
+    background:
+      radial-gradient(ellipse 60% 40% at 20% 10%, rgba(155,92,255,0.25), transparent 60%),
+      radial-gradient(ellipse 50% 40% at 85% 20%, rgba(255,61,127,0.18), transparent 60%),
+      radial-gradient(ellipse 60% 50% at 50% 90%, rgba(51,224,199,0.14), transparent 60%),
+      var(--bg);
+    background-size:200% 200%;
+    animation:drift 22s ease-in-out infinite alternate;
+  }
+  @keyframes drift{
+    0%{background-position:0% 0%, 100% 0%, 50% 100%, 0 0;}
+    100%{background-position:20% 30%, 80% 40%, 60% 70%, 0 0;}
+  }
+  .particle{
+    position:fixed; border-radius:50%; filter:blur(1px); opacity:0.5; pointer-events:none; z-index:0;
+    animation:floaty linear infinite;
+  }
+  @keyframes floaty{
+    0%{transform:translateY(0) translateX(0) rotate(0deg);}
+    50%{transform:translateY(-40px) translateX(20px) rotate(180deg);}
+    100%{transform:translateY(0) translateX(0) rotate(360deg);}
+  }
+
+  /* ---------- nav ---------- */
+  nav{
+    position:sticky; top:0; z-index:50;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:18px 6vw;
+    backdrop-filter:blur(14px);
+    background:rgba(11,9,18,0.55);
+    border-bottom:1px solid rgba(205,163,90,0.18);
+  }
+  .logo{
+    font-family:'Unbounded',sans-serif; font-weight:800; font-size:1.35rem; letter-spacing:0.02em;
+    color:var(--cream); display:flex; align-items:center; gap:10px;
+  }
+  .logo .dot{
+    width:12px; height:12px; border-radius:50%;
+    background:conic-gradient(var(--gold), var(--magenta), var(--cyan), var(--violet), var(--gold));
+    animation:spin 5s linear infinite;
+  }
+  @keyframes spin{to{transform:rotate(360deg);}}
+  .nav-links{display:flex; gap:28px; font-weight:600; font-size:0.95rem;}
+  .nav-links a{color:var(--muted); text-decoration:none; transition:color .25s;}
+  .nav-links a:hover{color:var(--gold-lt);}
+  .nav-cta{
+    background:linear-gradient(135deg,#25d366,#1ebd5a);
+    color:#04220f; font-weight:800; padding:10px 20px; border-radius:100px;
+    text-decoration:none; font-size:0.9rem; box-shadow:0 6px 20px rgba(37,211,102,0.35);
+    transition:transform .2s;
+  }
+  .nav-cta:hover{transform:translateY(-2px) scale(1.03);}
+
+  /* ---------- hero ---------- */
+  .hero{
+    position:relative; z-index:1;
+    min-height:92vh; display:flex; align-items:center; justify-content:center;
+    padding:8vh 6vw 6vh; text-align:center; flex-direction:column;
+  }
+  .eyebrow{
+    color:var(--gold-lt); font-weight:700; font-size:0.85rem; letter-spacing:0.14em;
+    margin-bottom:22px; opacity:0.9;
+  }
+  .hero h1{
+    font-family:'Unbounded',sans-serif; font-weight:900; line-height:0.98;
+    font-size:clamp(2.6rem, 8vw, 6rem);
+    background:linear-gradient(100deg, var(--gold-lt), var(--cream) 30%, var(--magenta) 55%, var(--cyan) 75%, var(--gold-lt));
+    background-size:300% auto;
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+    animation:shimmer 6s linear infinite;
+    max-width:16ch;
+  }
+  @keyframes shimmer{to{background-position:300% center;}}
+  .hero p.sub{
+    margin-top:24px; max-width:46ch; color:var(--muted); font-size:1.1rem; font-weight:500;
+  }
+  .hero-actions{display:flex; gap:16px; margin-top:38px; flex-wrap:wrap; justify-content:center;}
+  .btn-primary, .btn-ghost{
+    padding:15px 30px; border-radius:100px; font-weight:800; font-size:0.98rem; text-decoration:none;
+    display:inline-flex; align-items:center; gap:10px; transition:transform .2s, box-shadow .2s;
+  }
+  .btn-primary{
+    background:linear-gradient(135deg,#25d366,#1ebd5a); color:#04220f;
+    box-shadow:0 10px 30px rgba(37,211,102,0.35);
+  }
+  .btn-primary:hover{transform:translateY(-3px); box-shadow:0 14px 36px rgba(37,211,102,0.5);}
+  .btn-ghost{
+    border:1.5px solid rgba(243,236,221,0.35); color:var(--cream);
+  }
+  .btn-ghost:hover{border-color:var(--gold-lt); color:var(--gold-lt); transform:translateY(-3px);}
+
+  /* ---------- big rotating watch ---------- */
+  .watch-hero{
+    width:min(280px, 60vw); height:min(280px, 60vw); position:relative; margin:44px auto 10px;
+  }
+  .watch-hero .orbit{
+    position:absolute; inset:-30px; border-radius:50%;
+    border:1.5px dashed rgba(205,163,90,0.3);
+    animation:spin 18s linear infinite;
+  }
+  .watch-hero .orbit span{
+    position:absolute; width:14px; height:14px; border-radius:50%; top:-7px; left:calc(50% - 7px);
+    box-shadow:0 0 14px 3px currentColor;
+  }
+  .watch-hero .orbit span:nth-child(1){color:var(--magenta); background:var(--magenta);}
+  .watch-hero .orbit span:nth-child(2){color:var(--cyan); background:var(--cyan); top:auto; bottom:-7px;}
+  .watch-hero .orbit span:nth-child(3){color:var(--violet); background:var(--violet); top:calc(50% - 7px); left:-7px;}
+  .watch-face{
+    position:absolute; inset:0; border-radius:50%;
+    background:radial-gradient(circle at 35% 30%, #2a2138, #0b0912 75%);
+    border:6px solid var(--gold);
+    box-shadow:0 0 0 2px rgba(205,163,90,0.25), 0 30px 60px rgba(0,0,0,0.6), inset 0 0 30px rgba(0,0,0,0.6);
+  }
+  .watch-face::before{
+    content:''; position:absolute; inset:14%; border-radius:50%;
+    background:repeating-conic-gradient(rgba(243,236,221,0.06) 0deg 3deg, transparent 3deg 30deg);
+  }
+  .hand{position:absolute; left:50%; bottom:50%; transform-origin:bottom center; border-radius:4px;}
+  .hand.hour{width:5px; height:26%; background:var(--cream); margin-left:-2.5px; animation:spin 43200s linear infinite;}
+  .hand.min{width:3.5px; height:36%; background:var(--gold-lt); margin-left:-1.75px; animation:spin 3600s linear infinite;}
+  .hand.sec{width:2px; height:38%; background:var(--magenta); margin-left:-1px; animation:spin 6s linear infinite;}
+  .hub{position:absolute; top:50%; left:50%; width:12px; height:12px; background:var(--gold); border-radius:50%; transform:translate(-50%,-50%); box-shadow:0 0 12px var(--gold);}
+
+  /* ---------- marquee ---------- */
+  .marquee-wrap{
+    position:relative; z-index:1; overflow:hidden; padding:16px 0;
+    background:linear-gradient(90deg, var(--violet), var(--magenta), var(--amber), var(--cyan), var(--violet));
+    background-size:300% 100%;
+    animation:mqbg 10s linear infinite;
+    border-top:1px solid rgba(0,0,0,0.2); border-bottom:1px solid rgba(0,0,0,0.2);
+  }
+  @keyframes mqbg{to{background-position:300% 0;}}
+  .marquee-track{
+    display:flex; gap:50px; white-space:nowrap; width:max-content;
+    animation:scroll-left 22s linear infinite;
+    font-family:'Unbounded',sans-serif; font-weight:800; font-size:1.1rem; color:#0b0912;
+  }
+  @keyframes scroll-left{from{transform:translateX(0);} to{transform:translateX(-50%);}}
+
+  /* ---------- section headers ---------- */
+  .section{position:relative; z-index:1; padding:90px 6vw;}
+  .section-head{text-align:center; max-width:640px; margin:0 auto 50px;}
+  .section-head h2{
+    font-family:'Unbounded',sans-serif; font-weight:800; font-size:clamp(1.8rem,4vw,2.8rem);
+    color:var(--cream);
+  }
+  .section-head p{color:var(--muted); margin-top:14px; font-size:1.05rem;}
+
+  /* ---------- filters ---------- */
+  .filters{display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-bottom:44px;}
+  .filter-pill{
+    padding:10px 20px; border-radius:100px; font-weight:700; font-size:0.88rem; cursor:pointer;
+    border:1.5px solid rgba(243,236,221,0.2); color:var(--muted); background:transparent;
+    transition:all .25s;
+  }
+  .filter-pill:hover{color:var(--cream); border-color:rgba(243,236,221,0.5);}
+  .filter-pill.active{color:#0b0912; border-color:transparent;}
+
+  /* ---------- product grid ---------- */
+  .grid{
+    display:grid; grid-template-columns:repeat(auto-fit, minmax(270px,1fr)); gap:28px; max-width:1280px; margin:0 auto;
+  }
+  .card{
+    position:relative; border-radius:var(--radius); padding:26px 22px 22px;
+    background:linear-gradient(160deg, var(--bg3), var(--bg2));
+    border:1px solid rgba(243,236,221,0.08);
+    transition:transform .25s ease, box-shadow .25s ease;
+    transform-style:preserve-3d; opacity:0; translate:0 24px;
+  }
+  .card.show{animation:cardIn .6s ease forwards;}
+  @keyframes cardIn{to{opacity:1; translate:0 0;}}
+  .card:hover{box-shadow:0 20px 50px -12px var(--glow, rgba(205,163,90,0.4));}
+  .card .tag{
+    display:inline-block; font-size:0.72rem; font-weight:800; letter-spacing:0.04em;
+    padding:5px 12px; border-radius:100px; color:#0b0912; margin-bottom:16px;
+  }
+  .mini-watch{
+    width:100%; aspect-ratio:1/1; border-radius:16px; position:relative; margin-bottom:18px;
+    display:flex; align-items:center; justify-content:center;
+    background:radial-gradient(circle at 30% 25%, rgba(255,255,255,0.08), transparent 60%), var(--bg);
+    overflow:hidden;
+  }
+  .mini-watch::after{
+    content:''; position:absolute; inset:0;
+    background:radial-gradient(circle at 70% 80%, var(--glow, rgba(205,163,90,0.25)), transparent 55%);
+  }
+  .mini-dial{
+    width:64%; aspect-ratio:1/1; border-radius:50%; position:relative; z-index:1;
+    border:5px solid var(--gold); background:radial-gradient(circle at 35% 30%, #2a2138, #0b0912 75%);
+    box-shadow:0 14px 30px rgba(0,0,0,0.5);
+  }
+  .mini-dial .h1,.mini-dial .h2{position:absolute; left:50%; bottom:50%; transform-origin:bottom; background:var(--cream); border-radius:3px;}
+  .mini-dial .h1{width:3px; height:22%; margin-left:-1.5px; transform:rotate(35deg);}
+  .mini-dial .h2{width:2px; height:30%; margin-left:-1px; background:var(--gold-lt); transform:rotate(120deg);}
+  .card:hover .mini-dial .h2{transition:transform 2s ease; transform:rotate(480deg);}
+  .card h3{font-family:'Unbounded',sans-serif; font-size:1.1rem; font-weight:700; margin-bottom:6px;}
+  .card p.desc{color:var(--muted); font-size:0.9rem; margin-bottom:14px; line-height:1.5;}
+  .card .price-row{display:flex; align-items:center; justify-content:space-between; margin-bottom:16px;}
+  .price{font-family:'Unbounded',sans-serif; font-weight:800; font-size:1.25rem; color:var(--gold-lt);}
+  .old-price{color:var(--muted); text-decoration:line-through; font-size:0.85rem; margin-left:8px;}
+  .order-btn{
+    width:100%; padding:13px; border-radius:100px; text-align:center; text-decoration:none;
+    font-weight:800; font-size:0.9rem; background:linear-gradient(135deg,#25d366,#1ebd5a); color:#04220f;
+    display:flex; align-items:center; justify-content:center; gap:8px; transition:transform .2s;
+  }
+  .order-btn:hover{transform:scale(1.03);}
+
+  /* ---------- how it works ---------- */
+  .steps{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:24px; max-width:1000px; margin:0 auto;}
+  .step{
+    padding:30px 24px; border-radius:var(--radius); background:linear-gradient(160deg, var(--bg3), var(--bg2));
+    border:1px solid rgba(243,236,221,0.08); text-align:center;
+  }
+  .step .num{
+    width:46px; height:46px; border-radius:50%; margin:0 auto 16px; display:flex; align-items:center; justify-content:center;
+    font-family:'Unbounded',sans-serif; font-weight:800; color:#0b0912;
+  }
+  .step h4{font-family:'Unbounded',sans-serif; font-size:1.05rem; margin-bottom:8px;}
+  .step p{color:var(--muted); font-size:0.9rem; line-height:1.5;}
+
+  /* ---------- trust strip ---------- */
+  .trust{display:flex; flex-wrap:wrap; justify-content:center; gap:40px; max-width:900px; margin:0 auto;}
+  .trust-item{text-align:center;}
+  .trust-item .big{font-family:'Unbounded',sans-serif; font-weight:900; font-size:2rem;
+    background:linear-gradient(120deg,var(--gold-lt),var(--magenta)); -webkit-background-clip:text; background-clip:text; color:transparent;}
+  .trust-item .lbl{color:var(--muted); font-size:0.85rem; margin-top:4px;}
+
+  /* ---------- footer ---------- */
+  footer{
+    position:relative; z-index:1; padding:60px 6vw 30px; border-top:1px solid rgba(205,163,90,0.15);
+    text-align:center;
+  }
+  footer .logo{justify-content:center; margin-bottom:16px;}
+  footer .flinks{display:flex; gap:24px; justify-content:center; margin:18px 0; flex-wrap:wrap;}
+  footer .flinks a{color:var(--muted); text-decoration:none; font-weight:600; font-size:0.9rem; transition:color .2s;}
+  footer .flinks a:hover{color:var(--gold-lt);}
+  footer .copy{color:var(--muted); font-size:0.8rem; margin-top:20px;}
+
+  /* ---------- floating whatsapp ---------- */
+  .float-wa{
+    position:fixed; bottom:24px; right:24px; z-index:60;
+    width:64px; height:64px; border-radius:50%;
+    background:linear-gradient(135deg,#25d366,#1ebd5a);
+    display:flex; align-items:center; justify-content:center;
+    box-shadow:0 10px 30px rgba(37,211,102,0.5);
+    animation:pulse 2.4s ease-in-out infinite;
+    text-decoration:none;
+  }
+  @keyframes pulse{0%,100%{transform:scale(1);} 50%{transform:scale(1.08);}}
+  .float-wa svg{width:32px; height:32px;}
+
+  @media (max-width:760px){
+    .nav-links{display:none;}
+  }
+</style>
+</head>
+<body>
+
+<div id="bg-field"></div>
+
+<nav>
+  <div class="logo" id="logo-trigger" title="">
+    <span class="dot"></span>B7R
+  </div>
+  <div class="nav-links">
+    <a href="#collections">Collections</a>
+    <a href="#comment">Comment commander</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <a class="nav-cta" href="#" id="nav-wa-link">Commander sur WhatsApp</a>
+</nav>
+
+<section class="hero">
+  <div class="eyebrow">ATELIER NOIR &amp; LAITON — FÈS, MAROC</div>
+  <h1>L'heure ne se négocie pas.</h1>
+  <p class="sub">Des pièces conçues pour une clientèle exigeante, qui refuse le tape-à-l'œil bon marché. Commande directe, règlement à la livraison, partout au Maroc.</p>
+  <p style="margin-top:10px; color:var(--muted); font-size:0.85rem; letter-spacing:0.03em;">Produit réservé à une clientèle adulte — non destiné aux enfants.</p>
+  <div class="hero-actions">
+    <a class="btn-primary" href="#collections">
+      <span>Voir la collection</span>
+    </a>
+    <a class="btn-ghost" href="#comment">Comment ça marche</a>
+  </div>
+
+  <div class="watch-hero">
+    <div class="orbit"><span></span><span></span><span></span></div>
+    <div class="watch-face">
+      <div class="hand hour"></div>
+      <div class="hand min"></div>
+      <div class="hand sec"></div>
+      <div class="hub"></div>
+    </div>
+  </div>
+</section>
+
+<div class="marquee-wrap">
+  <div class="marquee-track" id="marquee-track"></div>
+</div>
+
+<section class="section" id="collections">
+  <div class="section-head">
+    <h2>La collection complète</h2>
+    <p>Chaque montre est livrée avec sa boîte B7R et vérifiée avant expédition. Choisis ton modèle et commande en un message.</p>
+  </div>
+
+  <div class="filters" id="filters"></div>
+  <div class="grid" id="grid"></div>
+</section>
+
+<section class="section" id="comment" style="padding-top:20px;">
+  <div class="section-head">
+    <h2>Commander, c'est simple</h2>
+    <p>Pas de compte à créer, pas de carte bancaire à sortir. Trois étapes et ta montre est en route.</p>
+  </div>
+  <div class="steps">
+    <div class="step">
+      <div class="num" style="background:linear-gradient(135deg,var(--violet),var(--magenta));">1</div>
+      <h4>Sélectionnez votre pièce</h4>
+      <p>Parcourez la collection et identifiez le modèle qui correspond à votre exigence.</p>
+    </div>
+    <div class="step">
+      <div class="num" style="background:linear-gradient(135deg,var(--cyan),var(--gold));">2</div>
+      <h4>Contactez-nous sur WhatsApp</h4>
+      <p>Un message pré-rempli s'ouvre automatiquement avec le modèle choisi.</p>
+    </div>
+    <div class="step">
+      <div class="num" style="background:linear-gradient(135deg,var(--amber),var(--magenta));">3</div>
+      <h4>Validez et recevez</h4>
+      <p>Nous confirmons votre ville et votre adresse, règlement à la réception.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:20px; padding-bottom:60px;">
+  <div class="trust">
+    <div class="trust-item"><div class="big">+10</div><div class="lbl">modèles disponibles</div></div>
+    <div class="trust-item"><div class="big">COD</div><div class="lbl">paiement à la livraison</div></div>
+    <div class="trust-item"><div class="big">24/48h</div><div class="lbl">livraison partout au Maroc</div></div>
+    <div class="trust-item"><div class="big">100%</div><div class="lbl">vérifiées avant envoi</div></div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="logo"><span class="dot"></span>B7R</div>
+  <div class="flinks">
+    <a href="https://instagram.com/b7r_watch" target="_blank" rel="noopener">Instagram — @b7r_watch</a>
+    <a href="#" id="footer-wa-link" target="_blank" rel="noopener">WhatsApp</a>
+  </div>
+  <div class="copy">© 2026 B7R. Fès, Maroc. Produits réservés à une clientèle adulte — vente non destinée aux enfants. Site créé pour la vente directe, aucune donnée n'est collectée.</div>
+</footer>
+
+<a class="float-wa" id="float-wa-link" href="#" target="_blank" rel="noopener" aria-label="Commander sur WhatsApp">
+  <svg viewBox="0 0 32 32" fill="white"><path d="M16 3C9.4 3 4 8.4 4 15c0 2.4.7 4.6 1.9 6.5L4 29l7.7-1.9c1.8 1 3.9 1.5 6.3 1.5 6.6 0 12-5.4 12-12S22.6 3 16 3zm0 21.8c-2.1 0-4-.6-5.7-1.6l-.4-.2-4.6 1.2 1.2-4.5-.3-.5C5.2 17.9 4.6 16.5 4.6 15 4.6 9 9.4 4.2 16 4.2S27.4 9 27.4 15 22.6 24.8 16 24.8zm6-8.3c-.3-.2-1.9-.9-2.2-1s-.5-.2-.7.2-.8 1-1 1.2-.4.2-.7 0c-.3-.2-1.4-.5-2.6-1.6-1-.9-1.6-2-1.8-2.3-.2-.3 0-.5.1-.7.1-.1.3-.4.5-.5.2-.2.2-.3.3-.5.1-.2 0-.4 0-.6-.1-.2-.7-1.7-1-2.3-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.4z"/></svg>
+</a>
+
+<!-- ================= ADMIN (mkhbi 3la les clients — ykhrej ghi b logo x5 + code) ================= -->
+<div id="admin-overlay" style="display:none; position:fixed; inset:0; z-index:200; background:rgba(6,5,10,0.92); backdrop-filter:blur(6px); overflow-y:auto; padding:5vh 5vw;">
+  <div style="max-width:760px; margin:0 auto; background:linear-gradient(160deg,#1d1629,#15101f); border:1px solid rgba(205,163,90,0.25); border-radius:20px; padding:30px;">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+      <h2 style="font-family:'Unbounded',sans-serif; color:var(--gold-lt); font-size:1.3rem;">Admin B7R — Produits</h2>
+      <button id="admin-close" style="background:none; border:none; color:var(--muted); font-size:1.6rem; cursor:pointer;">&times;</button>
+    </div>
+    <p style="color:var(--muted); font-size:0.85rem; margin-bottom:22px; line-height:1.5;">
+      Zid, bdel wla msa7 produits. L'ghir dert "Télécharger le site mis à jour", 3awad zid had fichier f'GitHub (b nafss smiya) bach les clients ychofo les changements. Ghir tabdilat li dert houna (f had l'ordinateur) ghadi ykono visibles hta t'downloadi w tzid fichier jdid.
+    </p>
+
+    <div id="admin-form" style="display:grid; gap:12px; margin-bottom:26px; padding:20px; border-radius:14px; background:rgba(0,0,0,0.25);">
+      <input id="af-name" placeholder="Smiya dial la montre" style="padding:12px; border-radius:8px; border:1px solid rgba(255,255,255,0.15); background:#0b0912; color:var(--cream);">
+      <select id="af-cat" style="padding:12px; border-radius:8px; border:1px solid rgba(255,255,255,0.15); background:#0b0912; color:var(--cream);"></select>
+      <div style="display:flex; gap:12px;">
+        <input id="af-price" type="number" placeholder="Prix (DH)" style="flex:1; padding:12px; border-radius:8px; border:1px solid rgba(255,255,255,0.15); background:#0b0912; color:var(--cream);">
+        <input id="af-old" type="number" placeholder="Ancien prix (opsionel)" style="flex:1; padding:12px; border-radius:8px; border:1px solid rgba(255,255,255,0.15); background:#0b0912; color:var(--cream);">
+      </div>
+      <textarea id="af-desc" placeholder="Description qsira" rows="2" style="padding:12px; border-radius:8px; border:1px solid rgba(255,255,255,0.15); background:#0b0912; color:var(--cream); resize:vertical;"></textarea>
+      <div>
+        <label style="font-size:0.85rem; color:var(--muted); display:block; margin-bottom:6px;">Photo (opsionel — ila ma khtartich, ghadi tban cadran mrssm)</label>
+        <input id="af-photo" type="file" accept="image/*" style="color:var(--muted);">
+        <img id="af-preview" style="display:none; width:80px; height:80px; object-fit:cover; border-radius:10px; margin-top:8px;">
+      </div>
+      <div style="display:flex; gap:10px;">
+        <button id="af-submit" class="btn-primary" style="border:none; cursor:pointer;">Ajouter la montre</button>
+        <button id="af-cancel" class="btn-ghost" style="display:none; cursor:pointer; background:none;">Annuler modification</button>
+      </div>
+    </div>
+
+    <div id="admin-list" style="display:grid; gap:10px; margin-bottom:24px;"></div>
+
+    <button id="admin-export" style="width:100%; padding:16px; border-radius:12px; border:none; cursor:pointer; font-weight:800; font-family:'Unbounded',sans-serif; background:linear-gradient(135deg,var(--gold),var(--gold-lt)); color:#211705;">
+      Télécharger le site mis à jour
+    </button>
+  </div>
+</div>
+
+<script type="application/json" id="product-data">
+[
+  {"name":"Laiton Impérial", "cat":"Or Massif", "price":449, "old":590, "desc":"Boîtier plaqué or, bracelet acier, cadran soleillé.", "img":""},
+  {"name":"Sultane Gold", "cat":"Or Massif", "price":399, "old":520, "desc":"Ligne fine, index dorés, pour un style affirmé.", "img":""},
+  {"name":"Aurum 24", "cat":"Or Massif", "price":479, "old":0, "desc":"Édition dorée avec fond transparent.", "img":""},
+  {"name":"Noir Atlas", "cat":"Acier Noir", "price":349, "old":450, "desc":"Acier brossé noir mat, étanche, look urbain.", "img":""},
+  {"name":"Onyx Steel", "cat":"Acier Noir", "price":379, "old":0, "desc":"Bracelet maille milanaise, cadran anthracite.", "img":""},
+  {"name":"Midnight Fès", "cat":"Acier Noir", "price":329, "old":420, "desc":"Boîtier noir total, aiguilles luminescentes.", "img":""},
+  {"name":"Cuir Sahara", "cat":"Cuir Brun", "price":299, "old":380, "desc":"Bracelet cuir véritable brun, boîtier cuivré.", "img":""},
+  {"name":"Marrakchi Brown", "cat":"Cuir Brun", "price":319, "old":0, "desc":"Finition vintage, cadran champagne.", "img":""},
+  {"name":"Héritage Cuir", "cat":"Cuir Brun", "price":289, "old":360, "desc":"Cuir tressé, boucle ardillon classique.", "img":""},
+  {"name":"Chrono Rifi", "cat":"Édition Chrono", "price":549, "old":690, "desc":"Trois compteurs fonctionnels, boîtier renforcé.", "img":""},
+  {"name":"Chrono Zellige", "cat":"Édition Chrono", "price":579, "old":0, "desc":"Inspiré des motifs zellige, édition limitée.", "img":""},
+  {"name":"Racing Chrono", "cat":"Édition Chrono", "price":529, "old":650, "desc":"Style sport, lunette tachymètre.", "img":""},
+  {"name":"Épure Blanc", "cat":"Minimal", "price":259, "old":0, "desc":"Cadran blanc épuré, bracelet cuir beige.", "img":""},
+  {"name":"Ligne Douce", "cat":"Minimal", "price":239, "old":299, "desc":"Design minimaliste, boîtier fin unisexe.", "img":""}
+]
+</script>
+<script>
+(function(){
+  // ---- config ----
+  var WA_NUMBER = "212770053200"; // +212 7 70 05 32 00
+  var ADMIN_CODE = "b7r2026"; // code sri f'admin — bdlha b chi haja khra ila bghiti
+  var accents = {
+    "Or Massif": "var(--gold)",
+    "Acier Noir": "var(--cyan)",
+    "Cuir Brun": "var(--amber)",
+    "Édition Chrono": "var(--violet)",
+    "Minimal": "var(--magenta)"
+  };
+  var accentHex = {
+    "Or Massif": "#cda35a",
+    "Acier Noir": "#33e0c7",
+    "Cuir Brun": "#ffb020",
+    "Édition Chrono": "#9b5cff",
+    "Minimal": "#ff3d7f"
+  };
+
+  var dataTag = document.getElementById('product-data');
+  var products = [];
+  try{
+    var saved = localStorage.getItem('b7r_products');
+    products = saved ? JSON.parse(saved) : JSON.parse(dataTag.textContent);
+  }catch(e){
+    products = JSON.parse(dataTag.textContent);
+  }
+
+  function waLink(product){
+    var msg = "Salam, bghit nkhod l'montre \"" + product.name + "\" (" + product.price + " DH) men B7R. Wach mtofra?";
+    return "https://wa.me/" + WA_NUMBER + "?text=" + encodeURIComponent(msg);
+  }
+
+  // top-level WA link (general inquiry)
+  var generalMsg = "Salam B7R! Bghit ne3ref chi haja 3la les montres dyalkom.";
+  var generalLink = "https://wa.me/" + WA_NUMBER + "?text=" + encodeURIComponent(generalMsg);
+  document.getElementById('nav-wa-link').href = generalLink;
+  document.getElementById('footer-wa-link').href = generalLink;
+  document.getElementById('float-wa-link').href = generalLink;
+
+  // ---- marquee ----
+  var words = ["LIVRAISON PARTOUT AU MAROC","PAIEMENT À LA LIVRAISON","+10 MODÈLES","ATELIER NOIR & LAITON","COMMANDE EN 1 MESSAGE"];
+  var track = document.getElementById('marquee-track');
+  var html = "";
+  for(var r=0;r<2;r++){
+    words.forEach(function(w){ html += "<span>"+w+" ✦</span>"; });
+  }
+  track.innerHTML = html;
+
+  // ---- filters ----
+  var cats = ["Tous"].concat(Object.keys(accents));
+  var filtersEl = document.getElementById('filters');
+  cats.forEach(function(c, i){
+    var pill = document.createElement('button');
+    pill.className = 'filter-pill' + (i===0 ? ' active' : '');
+    pill.textContent = c;
+    pill.style.background = i===0 ? 'linear-gradient(135deg,var(--gold),var(--magenta))' : 'transparent';
+    pill.addEventListener('click', function(){
+      document.querySelectorAll('.filter-pill').forEach(function(p){ p.classList.remove('active'); p.style.background='transparent'; });
+      pill.classList.add('active');
+      pill.style.background = 'linear-gradient(135deg,var(--gold),var(--magenta))';
+      renderGrid(c);
+    });
+    filtersEl.appendChild(pill);
+  });
+
+  // ---- grid ----
+  var gridEl = document.getElementById('grid');
+  function renderGrid(filter){
+    gridEl.innerHTML = "";
+    var list = (!filter || filter==="Tous") ? products : products.filter(function(p){return p.cat===filter;});
+    list.forEach(function(p, idx){
+      var card = document.createElement('div');
+      card.className = 'card';
+      card.style.setProperty('--glow', hexToRgba(accentHex[p.cat], 0.35));
+      var imgHtml = p.img
+        ? '<img src="'+p.img+'" alt="'+p.name+'" style="width:100%;height:100%;object-fit:cover;border-radius:16px;position:relative;z-index:1;">'
+        : '<div class="mini-dial" style="border-color:'+accentHex[p.cat]+'"><div class="h1"></div><div class="h2"></div></div>';
+      card.innerHTML =
+        '<span class="tag" style="background:'+accentHex[p.cat]+'">'+p.cat+'</span>'+
+        '<div class="mini-watch" style="--glow:'+hexToRgba(accentHex[p.cat],0.3)+'">'+
+          imgHtml+
+        '</div>'+
+        '<h3>'+p.name+'</h3>'+
+        '<p class="desc">'+p.desc+'</p>'+
+        '<div class="price-row"><span><span class="price">'+p.price+' DH</span>'+(p.old? '<span class="old-price">'+p.old+' DH</span>':'')+'</span></div>'+
+        '<a class="order-btn" target="_blank" rel="noopener" href="'+waLink(p)+'">Commander sur WhatsApp</a>';
+      gridEl.appendChild(card);
+      // tilt effect
+      card.addEventListener('mousemove', function(e){
+        var r = card.getBoundingClientRect();
+        var x = (e.clientX - r.left)/r.width - 0.5;
+        var y = (e.clientY - r.top)/r.height - 0.5;
+        card.style.transform = 'perspective(700px) rotateY('+(x*8)+'deg) rotateX('+(-y*8)+'deg) translateY(-4px)';
+      });
+      card.addEventListener('mouseleave', function(){
+        card.style.transform = 'perspective(700px) rotateY(0) rotateX(0) translateY(0)';
+      });
+      observer.observe(card);
+    });
+  }
+
+  function hexToRgba(hex, a){
+    var v = hex.replace('#','');
+    var bigint = parseInt(v,16);
+    var r=(bigint>>16)&255, g=(bigint>>8)&255, b=bigint&255;
+    return 'rgba('+r+','+g+','+b+','+a+')';
+  }
+
+  var observer = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry, i){
+      if(entry.isIntersecting){
+        setTimeout(function(){ entry.target.classList.add('show'); }, (i%6)*70);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {threshold:0.15});
+
+  // ================= ADMIN =================
+  function saveProducts(){
+    localStorage.setItem('b7r_products', JSON.stringify(products));
+    dataTag.textContent = JSON.stringify(products, null, 2);
+  }
+
+  var editingIndex = -1;
+  var pendingImg = "";
+
+  function fillCatSelect(){
+    var sel = document.getElementById('af-cat');
+    sel.innerHTML = "";
+    Object.keys(accents).forEach(function(c){
+      var o = document.createElement('option');
+      o.value = c; o.textContent = c;
+      sel.appendChild(o);
+    });
+  }
+
+  function renderAdminList(){
+    var list = document.getElementById('admin-list');
+    list.innerHTML = "";
+    products.forEach(function(p, i){
+      var row = document.createElement('div');
+      row.style.cssText = "display:flex; align-items:center; gap:12px; padding:10px 14px; border-radius:10px; background:rgba(255,255,255,0.04);";
+      row.innerHTML =
+        '<div style="width:40px;height:40px;border-radius:8px;overflow:hidden;flex-shrink:0;background:'+accentHex[p.cat]+'22;display:flex;align-items:center;justify-content:center;">'+
+          (p.img ? '<img src="'+p.img+'" style="width:100%;height:100%;object-fit:cover;">' : '<span style="font-size:0.7rem;color:'+accentHex[p.cat]+'">'+p.cat.slice(0,2)+'</span>')+
+        '</div>'+
+        '<div style="flex:1;"><div style="font-weight:700;font-size:0.9rem;">'+p.name+'</div><div style="color:var(--muted);font-size:0.78rem;">'+p.cat+' — '+p.price+' DH</div></div>'+
+        '<button data-i="'+i+'" class="edit-btn" style="background:none;border:1px solid rgba(255,255,255,0.2);color:var(--cream);border-radius:8px;padding:6px 10px;cursor:pointer;font-size:0.78rem;">Modifier</button>'+
+        '<button data-i="'+i+'" class="del-btn" style="background:none;border:1px solid rgba(255,61,127,0.4);color:var(--magenta);border-radius:8px;padding:6px 10px;cursor:pointer;font-size:0.78rem;">Suppr.</button>';
+      list.appendChild(row);
+    });
+    list.querySelectorAll('.edit-btn').forEach(function(b){
+      b.addEventListener('click', function(){ startEdit(parseInt(b.dataset.i)); });
+    });
+    list.querySelectorAll('.del-btn').forEach(function(b){
+      b.addEventListener('click', function(){
+        if(confirm('Msa7 had la montre?')){
+          products.splice(parseInt(b.dataset.i),1);
+          saveProducts(); renderAdminList(); renderGrid('Tous');
+        }
+      });
+    });
+  }
+
+  function startEdit(i){
+    editingIndex = i;
+    var p = products[i];
+    document.getElementById('af-name').value = p.name;
+    document.getElementById('af-cat').value = p.cat;
+    document.getElementById('af-price').value = p.price;
+    document.getElementById('af-old').value = p.old || '';
+    document.getElementById('af-desc').value = p.desc;
+    pendingImg = p.img || "";
+    var prev = document.getElementById('af-preview');
+    if(pendingImg){ prev.src = pendingImg; prev.style.display='block'; } else { prev.style.display='none'; }
+    document.getElementById('af-submit').textContent = 'Enregistrer les modifications';
+    document.getElementById('af-cancel').style.display = 'inline-flex';
+    document.getElementById('admin-form').scrollIntoView({behavior:'smooth'});
+  }
+
+  function resetForm(){
+    editingIndex = -1; pendingImg = "";
+    document.getElementById('af-name').value = '';
+    document.getElementById('af-price').value = '';
+    document.getElementById('af-old').value = '';
+    document.getElementById('af-desc').value = '';
+    document.getElementById('af-photo').value = '';
+    document.getElementById('af-preview').style.display = 'none';
+    document.getElementById('af-submit').textContent = 'Ajouter la montre';
+    document.getElementById('af-cancel').style.display = 'none';
+  }
+
+  // compress uploaded photo so the file doesn't get huge
+  document.getElementById('af-photo').addEventListener('change', function(e){
+    var file = e.target.files[0];
+    if(!file) return;
+    var reader = new FileReader();
+    reader.onload = function(ev){
+      var img = new Image();
+      img.onload = function(){
+        var maxW = 500;
+        var scale = Math.min(1, maxW/img.width);
+        var canvas = document.createElement('canvas');
+        canvas.width = img.width*scale; canvas.height = img.height*scale;
+        var ctx = canvas.getContext('2d');
+        ctx.drawImage(img,0,0,canvas.width,canvas.height);
+        pendingImg = canvas.toDataURL('image/jpeg', 0.82);
+        var prev = document.getElementById('af-preview');
+        prev.src = pendingImg; prev.style.display = 'block';
+      };
+      img.src = ev.target.result;
+    };
+    reader.readAsDataURL(file);
+  });
+
+  document.getElementById('af-submit').addEventListener('click', function(){
+    var name = document.getElementById('af-name').value.trim();
+    var cat = document.getElementById('af-cat').value;
+    var price = parseInt(document.getElementById('af-price').value) || 0;
+    var old = parseInt(document.getElementById('af-old').value) || 0;
+    var desc = document.getElementById('af-desc').value.trim();
+    if(!name || !price){ alert('3afak 3tini l\'ism w tmen dial la montre.'); return; }
+    var product = {name:name, cat:cat, price:price, old:old, desc:desc, img:pendingImg};
+    if(editingIndex >= 0){ products[editingIndex] = product; } else { products.push(product); }
+    saveProducts(); renderAdminList(); renderGrid('Tous'); resetForm();
+  });
+  document.getElementById('af-cancel').addEventListener('click', resetForm);
+
+  // secret access: click logo 5x within 3s
+  var clickCount = 0, clickTimer = null;
+  document.getElementById('logo-trigger').addEventListener('click', function(){
+    clickCount++;
+    clearTimeout(clickTimer);
+    clickTimer = setTimeout(function(){ clickCount = 0; }, 3000);
+    if(clickCount >= 5){
+      clickCount = 0;
+      var code = prompt('Code admin:');
+      if(code === ADMIN_CODE){
+        fillCatSelect(); renderAdminList();
+        document.getElementById('admin-overlay').style.display = 'block';
+      } else if(code !== null){
+        alert('Code khati2.');
+      }
+    }
+  });
+  document.getElementById('admin-close').addEventListener('click', function(){
+    document.getElementById('admin-overlay').style.display = 'none';
+    resetForm();
+  });
+
+  document.getElementById('admin-export').addEventListener('click', function(){
+    saveProducts();
+    var htmlContent = "<!DOCTYPE html>\n" + document.documentElement.outerHTML;
+    var blob = new Blob([htmlContent], {type:'text/html'});
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'b7r-store.html';
+    a.click();
+  });
+  // ================= /ADMIN =================
+
+  renderGrid("Tous");
+
+  // ---- floating particles ----
+  var colors = ["#9b5cff","#ff3d7f","#33e0c7","#ffb020","#cda35a"];
+  for(var i=0;i<18;i++){
+    var p = document.createElement('div');
+    p.className = 'particle';
+    var size = 4 + Math.random()*10;
+    p.style.width = size+'px';
+    p.style.height = size+'px';
+    p.style.left = Math.random()*100+'vw';
+    p.style.top = Math.random()*100+'vh';
+    p.style.background = colors[i % colors.length];
+    p.style.animationDuration = (8 + Math.random()*10)+'s';
+    p.style.animationDelay = (Math.random()*5)+'s';
+    document.body.appendChild(p);
+  }
+})();
+</script>
+
+</body>
+</html>
